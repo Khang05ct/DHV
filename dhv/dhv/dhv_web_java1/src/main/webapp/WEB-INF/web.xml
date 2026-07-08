@@ -1,13 +1,160 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<%@ page contentType="text/html;charset=UTF-8" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập Hệ Thống Quản Lý Môn Học</title>
+    <style>
+        /* Đặt lại font chữ và làm nền Gradient Xanh - Đỏ */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Dải màu chuyển mượt từ Xanh dương đậm sang Đỏ thẫm */
+            background: linear-gradient(135deg, #004e92 0%, #e52d27 100%); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-<web-app>
-  <display-name>Hệ thống Quản lý Môn học</display-name>
-  
-  <!-- Cấu hình trang mặc định khi truy cập root (/) -->
-  <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
-  </welcome-file-list>
+        /* Khung chứa Form */
+        .login-card {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-sizing: border-box;
+        }
 
-</web-app>
+        /* Tiêu đề màu Xanh dương */
+        .login-card h1 {
+            margin-top: 0;
+            color: #004e92;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        /* Chữ hiển thị lỗi màu Đỏ */
+        .error-msg {
+            color: #e52d27;
+            font-size: 14px;
+            margin-bottom: 15px;
+            min-height: 20px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* Ô nhập liệu */
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        /* Viền chuyển Đỏ khi bấm vào ô nhập liệu */
+        .input-group input:focus {
+            border-color: #e52d27;
+            outline: none;
+            box-shadow: 0 0 8px rgba(229, 45, 39, 0.2);
+        }
+
+        /* Nút Đăng Nhập (Nút chính - Màu Đỏ) */
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: #e52d27;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        /* Khi rê chuột đổi sang Đỏ đậm */
+        .btn-submit:hover {
+            background-color: #b3241f;
+        }
+        
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        /* Đường kẻ ngang chia cách */
+        .divider {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #eeeeee;
+        }
+
+        /* Phần Đăng Ký */
+        .register-section p {
+            color: #666666;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        /* Nút Đăng Ký (Nút phụ - Viền Xanh dương) */
+        .btn-register {
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            color: #004e92;
+            border: 2px solid #004e92;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        /* Khi rê chuột đổi sang nền Xanh dương */
+        .btn-register:hover {
+            background-color: #004e92;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <form action="LoginServlet" method="POST">
+            <h1>Hệ Thống Quản Lý</h1>
+            
+            <div class="error-msg">
+                <%= request.getAttribute("loiDangNhap") != null ? request.getAttribute("loiDangNhap") : "" %>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Tên đăng nhập" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Mật khẩu" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">Đăng Nhập</button>
+            
+            <hr class="divider">
+            
+            <div class="register-section">
+                <p>Bạn chưa có tài khoản?</p>
+                <button type="button" class="btn-register" onclick="window.location.href='dangky.jsp'">Tạo tài khoản mới</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
