@@ -1,0 +1,7 @@
+Gõ lệnh sau để mở file database của bạn:
+
+sqlite3 dhv_database.db
+sqlite> .headers on 
+sqlite> .mode column
+sqlite> SELECT * FROM users; hiện bảng
+sqlite> .quit

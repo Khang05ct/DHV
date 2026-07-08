@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>vn.edu.dhv</groupId>
+  <artifactId>dhv_web_java1</artifactId>
+  <packaging>war</packaging>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>dhv_web_java1 Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    <!-- 1. Thư viện mặc định -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- 2. Thư viện kết nối MySQL -->
+    <dependency>
+        <groupId>org.xerial</groupId>
+        <artifactId>sqlite-jdbc</artifactId>
+        <version>3.45.1.0</version>
+    </dependency>
+
+    <!-- 3. Thư viện Servlet (Rất quan trọng để mã Java không bị lỗi HttpServlet) -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>dhv_web_java1</finalName>
+    <plugins>
+      <!-- 4. Máy chủ ảo Tomcat 7 -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+            <path>/</path>
+            <port>8080</port>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
